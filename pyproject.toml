@@ -21,7 +21,7 @@ dependencies = [
   "matplotlib==3.7.5",
   "leidenalg==0.10.2",
   "ipython==8.12.3",
-  "kneed==0.8.5"，
+  "kneed==0.8.5",
   "scanpy==1.9.8"
 ]
 
