@@ -1,5 +1,5 @@
 # DiffGSP addresses the physical diffusion of mRNA in sequencing-based spatial transcriptomics data utilizing graph signal processing
-Spatial transcriptomics enables the measurement of gene expression within tissues while preserving spatial context, offering deeper insights into tissue organization and intercellular interactions. However, transcripts captured at a given spot may originate from multiple adjacent regions due to mRNA diffusion during the data generation process, compromising data reliability and leading to misinterpretation of downstream analyses. To address the data inaccuracy caused by molecular diffusion in sequencing-based spatial transcriptomics, we present DiffGSP, a first-principles-based method that applies Fick??s law in combination with graph signal processing to mitigate molecular diffusion effects and denoise spatial transcriptomics data, thereby recovering true gene expression profiles.
+Spatial transcriptomics enables the measurement of gene expression within tissues while preserving spatial context, offering deeper insights into tissue organization and intercellular interactions. However, transcripts captured at a given spot may originate from multiple adjacent regions due to mRNA diffusion during the data generation process, compromising data reliability and leading to misinterpretation of downstream analyses. To address the data inaccuracy caused by molecular diffusion in sequencing-based spatial transcriptomics, we present DiffGSP, a first-principles-based method that applies Fick's law in combination with graph signal processing to mitigate molecular diffusion effects and denoise spatial transcriptomics data, thereby recovering true gene expression profiles.
 
 
 ## System Requirments
@@ -62,7 +62,7 @@ python
 ``` 
 and 
 ```Python
-import diffgsp as dg
+import DiffGSP as dg
 ```
 ### Install Torch
 
