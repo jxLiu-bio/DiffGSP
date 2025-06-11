@@ -5,6 +5,7 @@ import os
 import random
 import anndata
 import torch
+from scanpy.plotting import spatial
 from torch.optim import LBFGS
 from sklearn.neighbors import NearestNeighbors
 from scipy.sparse import csr_matrix
@@ -12,7 +13,7 @@ import scipy.sparse as ss
 from tqdm import tqdm
 import itertools
 import warnings
-from svg_select_spagft import rank_gene_smooth
+from .svg_select_spagft import rank_gene_smooth
 import numba as nb
 
 
@@ -108,14 +109,22 @@ def run_diffgsp(adata,
     #  Check input parameters
     assert method in ['BFGS', 'manual'], 'method should be BFGS or manual'
     if data_type in ['Stereoseq', 'VisiumHD']:
-        assert bin_size is not None, 'bin_size should be given'
+        if bin_size is None:
+            raise ValueError(f'bin_size should be given for data type {data_type}')
         rad_cutoff = 1 if rad_cutoff is None else rad_cutoff
     elif data_type in ['Visium', 'ST']:
         rad_cutoff = 2 if rad_cutoff is None else rad_cutoff
     elif data_type == 'Slideseq':
         rad_cutoff = 5 if rad_cutoff is None else rad_cutoff
 
-    assert 'spatial' not in adata.uns_keys(), 'adata.uns["spatial"] should be included to obtain spatial information'
+    if isinstance(spatial_key, str):
+        if spatial_key not in adata.obsm.keys():
+            raise ValueError(f'{spatial_key} not found in adata.obsm')
+        if spatial_key !=  'spatial':
+            adata.obsm['spatial'] = adata.obsm[spatial_key]
+    elif isinstance(spatial_key, list):
+        sp_array = adata.obs.loc[:, spatial_key].values
+        adata.obsm['spatial'] = sp_array
 
     # Obtain spot network using spatial information
     spotnet = obtain_spotnet(adata,
@@ -269,6 +278,7 @@ def run_diffgsp_subgraph(adata,
                          gene_network=False,
                          partition=[1, 1],
                          spatial_key='spatial',
+                         array_key=['array_row', 'array_col'],
                          rad_cutoff=None,
                          data_type=None,
                          bin_size=None,
@@ -339,10 +349,16 @@ def run_diffgsp_subgraph(adata,
         adata.obs['x'] = np.array(adata.obsm['spatial'][:, 0])
         adata.obs['y'] = np.array(adata.obsm['spatial'][:, 1])
 
-    if spatial_key == 'spatial':
-        sp_df = adata.obsm['spatial'].copy()
-    else:
-        sp_df = adata.obs.loc[:, spatial_key].copy().values
+    if isinstance(spatial_key, str):
+        if spatial_key not in adata.obsm.keys():
+            raise ValueError(f'{spatial_key} not found in adata.obsm')
+        if spatial_key !=  'spatial':
+            adata.obsm['spatial'] = adata.obsm[spatial_key]
+    elif isinstance(spatial_key, list):
+        sp_array = adata.obs.loc[:, spatial_key].values
+        adata.obsm['spatial'] = sp_array
+
+    sp_df = adata.obs.loc[:, array_key]
     batch_x_coor = np.percentile(sp_df[:, 0], np.linspace(0, 100, partition[0] + 1))
     batch_y_coor = np.percentile(sp_df[:, 1], np.linspace(0, 100, partition[1] + 1))
 
