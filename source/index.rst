@@ -1,4 +1,4 @@
-DeepGFT: clustering spatial transcriptomics data using deep learning and graph Fourier transform
+DiffGSP: Enhance Spatial Transcriptomics by Correcting mRNA Diffusion via Fick’s Law and Graph Signal Processing
 ==================================================================================================================
 
 .. toctree::
