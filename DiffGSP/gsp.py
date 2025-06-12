@@ -358,7 +358,7 @@ def run_diffgsp_subgraph(adata,
         sp_array = adata.obs.loc[:, spatial_key].values
         adata.obsm['spatial'] = sp_array
 
-    sp_df = adata.obs.loc[:, array_key]
+    sp_df = adata.obs.loc[:, array_key].values
     batch_x_coor = np.percentile(sp_df[:, 0], np.linspace(0, 100, partition[0] + 1))
     batch_y_coor = np.percentile(sp_df[:, 1], np.linspace(0, 100, partition[1] + 1))
 
