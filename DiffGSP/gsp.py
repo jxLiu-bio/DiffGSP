@@ -404,9 +404,9 @@ def run_diffgsp_subgraph(adata,
                 min_y = batch_y_coor[it_y]
                 max_y = batch_y_coor[it_y + 1]
                 temp_adata = adata.copy()
-                temp_adata = temp_adata[temp_adata.obs[spatial_key[0]].map(lambda x: min_x <= x < max_x
+                temp_adata = temp_adata[temp_adata.obs[array_key[0]].map(lambda x: min_x <= x < max_x
                 if it_x != partition[0] - 1 else min_x <= x <= max_x)]
-                temp_adata = temp_adata[temp_adata.obs[spatial_key[1]].map(lambda y: min_y <= y < max_y
+                temp_adata = temp_adata[temp_adata.obs[array_key[1]].map(lambda y: min_y <= y < max_y
                 if it_y != partition[1] - 1 else min_y <= y <= max_y)]
                 if temp_adata.shape[0] == 0:
                     if count == 0:
