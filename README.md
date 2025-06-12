@@ -83,7 +83,7 @@ python -m ipykernel install --user --name=deepgft_env --display-name=diffgsp_env
 ```
 
 ## Usage and Tutorials
-The detail step-by-step usage guide can be found here.
+The detail step-by-step usage guide can be found in <https://diffgsp.readthedocs.io/en/latest/>
 
 
 
