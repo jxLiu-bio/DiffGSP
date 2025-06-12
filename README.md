@@ -13,7 +13,7 @@ the following systems:
 - Windows: Windows 10
 
 ### Python Dependencies
-DifGSP requires the version of Python >= 3.8.
+DiffGSP requires the version of Python >= 3.8.
 
 
 ```
