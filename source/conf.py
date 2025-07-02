@@ -17,9 +17,9 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'DeepGFT'
-copyright = '2022, Sunli Sun; Jixin Liu'
-author = 'Sunli Sun; Jixin Liu'
+project = 'DiffGSP'
+copyright = '2025, Jixin Liu; Sunli Sun'
+author = 'Jixin Liu; Sunli Sun'
 
 # The full version, including alpha/beta/rc tags
 release = 'v0.0.1'
