@@ -46,5 +46,5 @@ Note that we recommend [jupyter](https://jupyter.org/) for interactive usage. It
 
 ```shell
 conda install jupyter
-python -m ipykernel install --user --name=deepgft_env --display-name=diffgsp_env
+python -m ipykernel install --user --name=diffgsp_env --display-name=diffgsp_env
 ```
