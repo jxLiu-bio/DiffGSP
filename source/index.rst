@@ -1,4 +1,4 @@
-DiffGSP: Enhance Spatial Transcriptomics by Correcting mRNA Diffusion via Fick’s Law and Graph Signal Processing
+DiffGSP: Modeling and Reversing mRNA Diffusion in Spatial Transcriptomics Using Fick’s Law and Graph Signal Processing
 ==================================================================================================================
 
 .. toctree::
