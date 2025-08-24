@@ -418,13 +418,13 @@ def run_diffgsp_subgraph(adata,
 
                 x_unique = len(np.unique(temp_adata.obs['x']))
                 y_unique = len(np.unique(temp_adata.obs['y']))
-                if (x_unique, y_unique) not in spot_eigvecs_dic.keys():
+                if (x_unique, y_unique, temp_adata.shape[0]) not in spot_eigvecs_dic.keys():
                     spotnet = obtain_spotnet(temp_adata, knn_method=knn_method, data_type=data_type,
                                              bin_size=bin_size, scale=scale, k_cutoff=k_cutoff)
                     spot_eigvecs, spot_eigvals = GraphFourierTransform(spotnet, n_GFT=temp_adata.shape[0])
                     spot_eigvals = spot_eigvals * (spot_eigvals > 0)
 
-                    spot_eigvecs_dic[(x_unique, y_unique)] = [spot_eigvecs, spot_eigvals]
+                    spot_eigvecs_dic[(x_unique, y_unique, temp_adata.shape[0])] = [spot_eigvecs, spot_eigvals]
 
                 if type(temp_adata.X) == np.ndarray or isinstance(temp_adata.X, anndata._core.views.ArrayView):
                     x = temp_adata.X.copy()
@@ -432,13 +432,13 @@ def run_diffgsp_subgraph(adata,
                     x = temp_adata.X.copy().todense()
 
                 if len(variable) == 3:
-                    constant_value = [None, x, spot_eigvecs_dic[(x_unique, y_unique)][0],
-                                      spot_eigvecs_dic[(x_unique, y_unique)][1], gene_eigvecs, gene_eigvals]
+                    constant_value = [None, x, spot_eigvecs_dic[(x_unique, y_unique, temp_adata.shape[0])][0],
+                                      spot_eigvecs_dic[(x_unique, y_unique, temp_adata.shape[0])][1], gene_eigvecs, gene_eigvals]
                 else:
-                    constant_value = [None, x, spot_eigvecs_dic[(x_unique, y_unique)][0],
-                                      spot_eigvecs_dic[(x_unique, y_unique)][1]]
+                    constant_value = [None, x, spot_eigvecs_dic[(x_unique, y_unique, temp_adata.shape[0])][0],
+                                      spot_eigvecs_dic[(x_unique, y_unique, temp_adata.shape[0])][1]]
                 if dic_storage is False:
-                    spot_eigvecs_dic.pop((x_unique, y_unique), None)
+                    spot_eigvecs_dic.pop((x_unique, y_unique, temp_adata.shape[0]), None)
                 temp_adata.X = csr_matrix(denoise_function_numpy(optimal_solution, constant_value, k))
                 if count == 0:
                     adata_result = temp_adata
