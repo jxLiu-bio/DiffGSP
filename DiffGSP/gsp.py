@@ -248,9 +248,9 @@ def run_diffgsp(adata,
                     optimal_solution = [0.3, 0.1, 0.1]
             elif data_type == 'Stereoseq':
                 if len(constant_value) == 4:
-                    optimal_solution = [0.5, 0.2]
+                    optimal_solution = [0.05, 0.05]
                 else:
-                    optimal_solution = [0.5, 0.1, 0.2]
+                    optimal_solution = [0.05, 0.1, 0.05]
             elif data_type == 'VisiumHD':
                 if len(constant_value) == 4:
                     optimal_solution = [0.02, 0.005]
@@ -376,9 +376,9 @@ def run_diffgsp_subgraph(adata,
                 optimal_solution = [0.3, 0.1, 0.1]
         elif data_type == 'Stereoseq':
             if not gene_network:
-                optimal_solution = [0.5, 0.2]
+                optimal_solution = [0.05, 0.05]
             else:
-                optimal_solution = [0.5, 0.1, 0.2]
+                optimal_solution = [0.05, 0.1, 0.05]
         elif data_type == 'VisiumHD':
             if not gene_network:
                 optimal_solution = [0.02, 0.005]
