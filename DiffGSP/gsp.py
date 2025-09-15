@@ -263,6 +263,9 @@ def run_diffgsp(adata,
                     optimal_solution = [0.1, 0.05, 0.05]
         else:
             optimal_solution = variable
+        assert optimal_solution[0] < 1 / spot_eigvals.max(), \
+            (f"Optimal solution (diffusion coefficient) fails to meet the constraint! Current value:"
+             f" {optimal_solution[0]}, Threshold: {1 / spot_eigvals.max():.6f}")
         adata.X = denoise_function_numpy(optimal_solution, constant_value, k)
         if normlization:
             adata.X = adata.X / np.array(adata.X.sum(axis=0)) * np.array(x.sum(axis=0))
@@ -425,7 +428,9 @@ def run_diffgsp_subgraph(adata,
                     spot_eigvals = spot_eigvals * (spot_eigvals > 0)
 
                     spot_eigvecs_dic[(x_unique, y_unique, temp_adata.shape[0])] = [spot_eigvecs, spot_eigvals]
-
+                    assert optimal_solution[0] < 1 / spot_eigvals.max(), \
+                        (f"Optimal solution (diffusion coefficient) fails to meet the the subgraph constraint! Current subgraph value:"
+                         f" {optimal_solution[0]}, Threshold: {1 / spot_eigvals.max():.6f}")
                 if type(temp_adata.X) == np.ndarray or isinstance(temp_adata.X, anndata._core.views.ArrayView):
                     x = temp_adata.X.copy()
                 else:
