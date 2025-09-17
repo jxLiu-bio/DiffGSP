@@ -265,7 +265,7 @@ def run_diffgsp(adata,
             optimal_solution = variable
         if optimal_solution[0] >= 1 / spot_eigvals.max():
             print(f"Optimal solution (diffusion coefficient) fails to meet the the subgraph constraint!"
-                  f"Current subgraph value: {optimal_solution[0]}, modify it to: {0.999 / spot_eigvals.max():.6f}")
+                  f"Current graph value: {optimal_solution[0]}, modify it to: {0.999 / spot_eigvals.max():.6f}")
             optimal_solution[0] = 0.999 / spot_eigvals.max()
         adata.X = denoise_function_numpy(optimal_solution, constant_value, k)
         if normlization:
