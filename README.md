@@ -1,91 +1,117 @@
 # DiffGSP: reversing mRNA diffusion to unlock high-fidelity spatial transcriptomics
-<img src="https://img.shields.io/badge/Platform-Linux-green"> <img src="https://img.shields.io/badge/Language-python3-green"> <img src="https://img.shields.io/badge/License-MIT-green"><img src="https://img.shields.io/badge/notebooks-passing-green"><img src="https://img.shields.io/badge/docs-passing-green">
 
-Spatial transcriptomics enables the measurement of gene expression within tissues while preserving spatial context, offering deeper insights into tissue organization and intercellular interactions. However, transcripts captured at a given spot may originate from multiple adjacent regions due to mRNA diffusion during the data generation process, compromising data reliability and leading to misinterpretation of downstream analyses. To address the data inaccuracy caused by molecular diffusion in sequencing-based spatial transcriptomics, we present DiffGSP, a first-principles-based method that applies Fick's law in combination with graph signal processing to mitigate molecular diffusion effects and denoise spatial transcriptomics data, thereby recovering true gene expression profiles.
+<img src="https://img.shields.io/badge/Platform-Linux-green"> <img src="https://img.shields.io/badge/Language-Python%203.9-green"> <img src="https://img.shields.io/badge/License-MIT-green"> <img src="https://img.shields.io/badge/notebooks-passing-green"> <img src="https://img.shields.io/badge/docs-passing-green">
+
 
 ![Image text](https://github.com/jxLiu-bio/DiffGSP/blob/main/source/image/DiffGSP.png)
-## System Requirments
-### OS requirements
-DiffGSP is based on Python Platform and can be run on Windows, Linux. The package has been tested on 
-the following systems:
 
-- Linux (recommend): CentOS 7.9.2009, Ubuntu 18.04, Ubuntu 20.04 
+## System Requirements
+
+### OS Requirements
+
+DiffGSP is based on Python and can run on both Windows and Linux. The package has been tested on the following systems:
+
+- Linux (recommended): CentOS 7.9.2009, Ubuntu 18.04, Ubuntu 20.04
 - Windows: Windows 10
 
 ### Python Dependencies
-DiffGSP requires the version of Python >= 3.8.
 
+DiffGSP requires Python >= 3.9. The package has been tested with Python 3.9.0.
 
-```
-pandas==2.0.3
-scipy==1.10.1
-scikit-learn==1.3.2
-tqdm==4.66.4
-matplotlib==3.7.5
-scipy==1.10.1
-scikit-learn==1.3.2
-leidenalg==0.10.2
-ipython==8.12.3
+The following package versions have been tested:
+
+```text
+numpy==2.0.2
+pandas==2.3.3
+scipy==1.13.1
+scikit-learn==1.6.1
+tqdm==4.67.1
+matplotlib==3.9.4
+leidenalg==0.10.0
+ipython==8.18.1
 kneed==0.8.5
-scanpy==1.9.8
-
+scanpy==1.10.0
 ```
 
 ## Installation Guide
 
-### Create a virtual environment
-We recommend Users to create a virtual environment by conda. Users can
-install ```anaconda``` or ```miniconda``` according to the guide in [https://www.anaconda.com/].
+### Create a Virtual Environment
 
-Create a vritual environment by run
+We recommend users create a virtual environment using Conda. Users can install `anaconda` or `miniconda` according to the guide at [https://www.anaconda.com/].
+
+Create a virtual environment by running:
 
 ```shell
-conda create -n diffgsp_env python==3.8
+conda create -n diffgsp_env python=3.9.0
 conda activate diffgsp_env
 ```
 
-### DownLoad DiffGSP
-Run
+### Download DiffGSP
+
+Run:
+
 ```shell
 git clone https://github.com/jxLiu-bio/DiffGSP
 cd ./DiffGSP
-
 ```
 
 ### Install DiffGSP
-After above precudures, you can install DiffGSP by
+
+After completing the above procedures, install DiffGSP by running:
+
 ```shell
 pip install .
 ```
 
-Test whether it has been install successfully by run following codes in Python
+### Install PyTorch
+
+DiffGSP supports GPU acceleration through PyTorch.
+
+For the tested environment with CUDA 12.4, install PyTorch and Torchvision using:
+
+```shell
+pip install torch==2.6.0 torchvision==0.21.0 --index-url https://download.pytorch.org/whl/cu124
+```
+
+For CPU-only environments, use:
+
+```shell
+pip install torch==2.6.0 torchvision==0.21.0 --index-url https://download.pytorch.org/whl/cpu
+```
+
+For optional GPU acceleration using CuPy with CUDA 12.x, install:
+
+```shell
+pip install cupy-cuda12x==13.6.0
+```
+
+Users can select the appropriate PyTorch version according to their CUDA environment. For other configurations, please refer to the [official PyTorch installation guide](https://pytorch.org/get-started/locally/).
+
+### Test Installation
+
+After installing DiffGSP and its required dependencies, launch Python:
+
 ```shell
 python
-``` 
-and 
-```Python
+```
+
+Then run the following code:
+
+```python
 import DiffGSP as dg
 ```
-### Install Torch
 
-Install the torch by
-```shell
-pip install torch==1.13.0+cu116 torchvision==0.14.0+cu116 torchaudio==0.13.0 --extra-index-url https://download.pytorch.org/whl/cu116
-```
-where cu116 can also be replaced to your cuda version or just cpu version.
+If no errors occur, DiffGSP has been successfully installed.
 
-### Install jupyter (optional)
-Note that we recommend [jupyter](https://jupyter.org/) for interactive usage. It can be installed and configured by
+### Install Jupyter (Optional)
+
+We recommend [Jupyter](https://jupyter.org/) for interactive usage. It can be installed and configured by running:
 
 ```shell
-conda install jupyter
+pip install jupyter ipykernel
 python -m ipykernel install --user --name=diffgsp_env --display-name=diffgsp_env
 ```
 
 ## Usage and Tutorials
-The detail step-by-step usage guide can be found in <https://diffgsp.readthedocs.io/en/latest/>
 
-
-
-
-
+The detailed step-by-step usage guide can be found at <https://diffgsp.readthedocs.io/en/latest/>.

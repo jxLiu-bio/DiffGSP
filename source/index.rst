@@ -11,10 +11,11 @@ DiffGSP: Modeling and Reversing mRNA Diffusion in Spatial Transcriptomics Using 
    Data preparation
    References
    Release
-   notebook/Tutorial 1. Visium
-   notebook/Tutorial 2. Slideseq
-   notebook/Tutorial 3. Stereoseq
-   notebook/Tutorial 4. VisiumHD
+   notebook/Visium_mouse_brain
+   notebook/Visium_mouse_kidney
+   notebook/Slideseq_mouse_brain
+   notebook/Stereo-seq_mouse_kidney
+   notebook/VisiumHD_human_colorectal_cancer
 
    
 

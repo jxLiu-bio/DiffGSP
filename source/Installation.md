@@ -1,50 +1,74 @@
 ## Installation
 
 ### Create a virtual environment
-We recommend Users to create a virtual environment by conda. Users can
-install ```anaconda``` or ```miniconda``` according to the guide in [https://www.anaconda.com/].
 
-Create a vritual environment by run
+We recommend users create a virtual environment using Conda. Users can install `anaconda` or `miniconda` according to the guide at [https://www.anaconda.com/].
+
+Create a virtual environment by running:
 
 ```shell
-conda create -n diffgsp_env python==3.8
+conda create -n diffgsp_env python=3.9.0
 conda activate diffgsp_env
 ```
 
-### DownLoad DiffGSP
-Run
+### Download DiffGSP
+
+Run:
+
 ```shell
 git clone https://github.com/jxLiu-bio/DiffGSP
 cd ./DiffGSP
-
 ```
 
 ### Install DiffGSP
-After above precudures, you can install DiffGSP by
+
+After completing the above procedures, install DiffGSP by running:
+
 ```shell
 pip install .
 ```
 
-Test whether it has been install successfully by run following codes in Python
+Test whether the installation was successful by launching Python:
+
 ```shell
 python
-``` 
-and 
-```Python
+```
+
+Then run:
+
+```python
 import DiffGSP as dg
 ```
-### Install Torch
 
-Install the torch by
+### Install PyTorch
+
+DiffGSP supports GPU acceleration through PyTorch.
+
+For CUDA 12.4, install PyTorch and Torchvision using:
+
 ```shell
-pip install torch==1.13.0+cu116 torchvision==0.14.0+cu116 torchaudio==0.13.0 --extra-index-url https://download.pytorch.org/whl/cu116
+pip install torch==2.6.0 torchvision==0.21.0 --index-url https://download.pytorch.org/whl/cu124
 ```
-where cu116 can also be replaced to your cuda version or just cpu version.
 
-### Install jupyter (optional)
-Note that we recommend [jupyter](https://jupyter.org/) for interactive usage. It can be installed and configured by
+For CPU-only environments, use:
 
 ```shell
-conda install jupyter
+pip install torch==2.6.0 torchvision==0.21.0 --index-url https://download.pytorch.org/whl/cpu
+```
+
+For optional GPU acceleration using CuPy with CUDA 12.x, install:
+
+```shell
+pip install cupy-cuda12x==13.6.0
+```
+
+Users can select the appropriate PyTorch version according to their CUDA environment. For other configurations, please refer to the [official PyTorch installation guide](https://pytorch.org/get-started/locally/).
+
+### Install Jupyter (Optional)
+
+We recommend [Jupyter](https://jupyter.org/) for interactive usage. It can be installed and configured by running:
+
+```shell
+pip install jupyter ipykernel
 python -m ipykernel install --user --name=diffgsp_env --display-name=diffgsp_env
 ```
