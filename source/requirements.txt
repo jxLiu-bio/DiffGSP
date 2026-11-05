@@ -1,8 +1,16 @@
+# Sphinx and documentation dependencies
 sphinx==3.2.1
 nbsphinx==0.8.7
 sphinx_rtd_theme==0.5.2
 myst-parser==0.15.2
 jinja2<3.1
 
-# Compatibility with legacy Sphinx
+# Setuptools compatibility
 setuptools==80.9.0
+
+# Sphinx extension compatibility
+sphinxcontrib-applehelp==1.0.4
+sphinxcontrib-devhelp==1.0.2
+sphinxcontrib-htmlhelp==2.0.1
+sphinxcontrib-qthelp==1.0.3
+sphinxcontrib-serializinghtml==1.1.5
